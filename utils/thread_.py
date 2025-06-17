@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2025/06/15
-# @Author  : Gemini AI
-# @File    : thread_utils.py
-# @Software: Python 3
 """
 该模块提供了简化线程创建和管理的工具。
 

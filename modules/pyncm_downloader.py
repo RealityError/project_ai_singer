@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2025/06/16 
-# @Author  : whitecat
-# @File    : pyncm_downloader.py
-# @Software: 遵守uv默认配置
 """
 用于登录网易云音乐获取歌曲信息及下载歌曲的模块。
 
@@ -15,7 +11,7 @@
 涉及到的文件夹文件:
 - `.env`: (可选) 用于在项目根目录存储登录凭据，比直接设置环境变量更方便。
 - `static/pyncm.session`: 用于缓存登录状态的文件，程序会自动创建和管理。
-- `music_downloads/`: 下载歌曲时默认创建的保存目录。
+- `static/music_downloads/`: 下载歌曲时默认创建的保存目录。
 
 如何设置环境变量:
     - 在项目根目录创建一个 `.env` 文件，内容如下:
@@ -233,7 +229,7 @@ def get_track_detail(song_id: int) -> Optional[Dict]:
         logger.error(f"获取歌曲详情时发生异常 (ID:{song_id}): {e}", exc_info=True)
         return None
 
-def download_song_by_id(song_id: int, save_dir: str = "music_downloads") -> Optional[Path]:
+def download_song_by_id(song_id: int, save_dir: str = "static/music_downloads") -> Optional[Path]:
     logger.info(f"准备下载歌曲 ID: {song_id}")
     detail = get_track_detail(song_id)
     if not detail:
