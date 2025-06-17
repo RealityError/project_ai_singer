@@ -257,8 +257,8 @@ if __name__ == '__main__':
         config_path = os.path.join(MODEL_DIR, "config.json")
         
         # 测试用的输入和输出文件
-        TEST_INPUT_DIR = "ouputs/test_inputs"
-        TEST_OUTPUT_DIR = "ouputs/test_outputs"
+        TEST_INPUT_DIR = "outputs/test_inputs"
+        TEST_OUTPUT_DIR = "outputs/test_outputs"
         os.makedirs(TEST_INPUT_DIR, exist_ok=True)
         os.makedirs(TEST_OUTPUT_DIR, exist_ok=True)
         
