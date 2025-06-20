@@ -20,6 +20,8 @@ if PROJECT_ROOT not in sys.path:
 SVC_ROOT = os.path.dirname(os.path.abspath(__file__))
 if SVC_ROOT not in sys.path:
     sys.path.insert(0, SVC_ROOT)
+    
+    
 # --- End of Path Correction ---
 
 
@@ -43,6 +45,8 @@ except ImportError:
 # 这是 PyTorch 官方推荐的、更直接和稳妥的解决方案。
 try:
     import torch.serialization
+    import torchaudio
+    torchaudio.set_audio_backend("soundfile")
     from fairseq.data import Dictionary
     logger.info("正在应用 PyTorch/Fairseq 兼容性补丁...")
     
@@ -164,7 +168,7 @@ class Sovits41Converter:
               loudness_envelope_adjustment: float = 1.0,
               # --- 音频切片参数 ---
               slice_db: int = -40,
-              clip_seconds: float = 0,
+              clip_seconds: float = 30,
               pad_seconds: float = 0.5,
               # --- 浅扩散参数 ---
               k_step: int = 100,
@@ -257,13 +261,13 @@ if __name__ == '__main__':
         config_path = os.path.join(MODEL_DIR, "config.json")
         
         # 测试用的输入和输出文件
-        TEST_INPUT_DIR = "outputs/test_inputs"
+        TEST_INPUT_DIR = "outputs/separated_output/results"
         TEST_OUTPUT_DIR = "outputs/test_outputs"
         os.makedirs(TEST_INPUT_DIR, exist_ok=True)
         os.makedirs(TEST_OUTPUT_DIR, exist_ok=True)
         
-        input_audio_path = os.path.join(TEST_INPUT_DIR, "cris我推的废物.wav")
-        output_audio_path = os.path.join(TEST_OUTPUT_DIR, "converted_output.wav")
+        input_audio_path = os.path.join(TEST_INPUT_DIR, "明天你好_vocals_Vocals.wav")
+        output_audio_path = os.path.join(TEST_OUTPUT_DIR, "明天你好_output.wav")
 
         # --- 2. 检查文件是否存在 ---
         if not all(os.path.exists(p) for p in [model_path, config_path, input_audio_path]):
@@ -283,6 +287,7 @@ if __name__ == '__main__':
             converter = Sovits41Converter(
                 model_path=model_path,
                 config_path=config_path,
+                device="cuda" 
                 # 如果有浅扩散模型，在这里填入路径
                 # shallow_diffusion=True,
                 # diffusion_model_path="path/to/diffusion_model.pt",

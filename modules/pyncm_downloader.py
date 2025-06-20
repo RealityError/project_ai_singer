@@ -74,7 +74,7 @@ except ImportError as e:
 
 
 # --- 配置管理 ---
-class Settings(BaseSettings):
+class Settings():
     """使用 Pydantic 从环境变量或 .env 文件加载配置"""
     netease_phone: str = ""
     netease_password: str = ""
@@ -229,7 +229,7 @@ def get_track_detail(song_id: int) -> Optional[Dict]:
         logger.error(f"获取歌曲详情时发生异常 (ID:{song_id}): {e}", exc_info=True)
         return None
 
-def download_song_by_id(song_id: int, save_dir: str = "static/music_downloads") -> Optional[Path]:
+def download_song_by_id(song_id: int, save_dir: str = "outputs/music_downloads") -> Optional[Path]:
     logger.info(f"准备下载歌曲 ID: {song_id}")
     detail = get_track_detail(song_id)
     if not detail:
@@ -280,6 +280,15 @@ def download_song_by_id(song_id: int, save_dir: str = "static/music_downloads") 
 # --- 模块导入时自动执行登录 ---
 login()
 
+
+__all__ = [
+    "login",
+    "resolve_song_input",
+    "get_song_id_by_name",
+    "get_track_audio",
+    "get_track_detail",
+    "download_song_by_id"
+]
 # --- 主程序入口（用作示例和测试）---
 if __name__ == "__main__":
     print("\n" + "="*20 + " 网易云音乐下载器模块测试 " + "="*20)

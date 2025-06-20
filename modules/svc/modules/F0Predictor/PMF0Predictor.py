@@ -1,7 +1,7 @@
 import numpy as np
 import parselmouth
 
-from modules.F0Predictor.F0Predictor import F0Predictor
+from modules.svc.modules.F0Predictor.F0Predictor import F0Predictor
 
 
 class PMF0Predictor(F0Predictor):

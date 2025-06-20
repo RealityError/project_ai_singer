@@ -20,6 +20,11 @@
 ### 3.2 ddsp
 
 ## 4.音频输入/输出
-### gradio
+### 
 
 # 使用框架
+
+
+
+
+额外安装代码:uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128

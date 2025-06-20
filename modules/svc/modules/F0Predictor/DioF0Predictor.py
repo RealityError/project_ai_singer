@@ -1,7 +1,7 @@
 import numpy as np
 import pyworld
 
-from modules.F0Predictor.F0Predictor import F0Predictor
+from modules.svc.modules.F0Predictor.F0Predictor import F0Predictor
 
 
 class DioF0Predictor(F0Predictor):

@@ -4,7 +4,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from modules.F0Predictor.F0Predictor import F0Predictor
+from modules.svc.modules.F0Predictor.F0Predictor import F0Predictor
 
 from .fcpe.model import FCPEInfer
 
